@@ -11,6 +11,3 @@ def read(path: str):
             jobs_list.append(job)
 
     return jobs_list
-
-
-print(read("src/jobs.csv"))
