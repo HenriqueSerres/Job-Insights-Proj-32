@@ -5,8 +5,8 @@ def get_unique_job_types(path):
     jobs_data = read(path)
     jobs_types_collection = []
     for job in jobs_data:
-        if job['job_type'] not in jobs_types_collection:
-            jobs_types_collection.append(job['job_type'])
+        if job["job_type"] not in jobs_types_collection:
+            jobs_types_collection.append(job["job_type"])
     return jobs_types_collection
 
 
@@ -14,56 +14,28 @@ def get_unique_job_types(path):
 
 
 def filter_by_job_type(jobs, job_type):
-    """Filters a list of jobs by job_type
-
-    Parameters
-    ----------
-    jobs : list
-        List of jobs to be filtered
-    job_type : str
-        Job type for the list filter
-
-    Returns
-    -------
-    list
-        List of jobs with provided job_type
-    """
-    return []
+    return [job for job in jobs if job["job_type"] == job_type]
 
 
 def get_unique_industries(path):
     jobs_data = read(path)
     industries_collection = set()
     for job in jobs_data:
-        if job['industry'] != '':
-            industries_collection.add(job['industry'])
+        if job["industry"] != "":
+            industries_collection.add(job["industry"])
     return industries_collection
 
 
 def filter_by_industry(jobs, industry):
-    """Filters a list of jobs by industry
-
-    Parameters
-    ----------
-    jobs : list
-        List of jobs to be filtered
-    industry : str
-        Industry for the list filter
-
-    Returns
-    -------
-    list
-        List of jobs with provided industry
-    """
-    return []
+    return [job for job in jobs if job["industry"] == industry]
 
 
 def get_max_salary(path):
     jobs_data = read(path)
     max_salary = []
     for job in jobs_data:
-        if job['max_salary'].isdigit() and job['max_salary'] != '':
-            max_salary.append(int(job['max_salary']))
+        if job["max_salary"].isdigit() and job["max_salary"] != "":
+            max_salary.append(int(job["max_salary"]))
     print(max_salary)
     return max(max_salary)
 
@@ -72,8 +44,8 @@ def get_min_salary(path):
     jobs_data = read(path)
     min_salary = []
     for job in jobs_data:
-        if job['min_salary'].isdigit() and job['min_salary'] != '':
-            min_salary.append(int(job['min_salary']))
+        if job["min_salary"].isdigit() and job["min_salary"] != "":
+            min_salary.append(int(job["min_salary"]))
     print(min_salary)
     return min(min_salary)
 
