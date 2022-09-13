@@ -54,9 +54,9 @@ def matches_salary_range(job: dict, salary: int):
     if "min_salary" not in job.keys() or "max_salary" not in job.keys():
         raise ValueError("doesn't exists")
     elif (
-        type(job["min_salary"])
-        and type(job["max_salary"])
-        and type(salary) != int
+        type(job["min_salary"]) != int
+        or type(job["max_salary"]) != int
+        or type(salary) != int
     ):
         raise ValueError("aren't valid integers")
     elif job["min_salary"] > job["max_salary"]:
@@ -64,19 +64,12 @@ def matches_salary_range(job: dict, salary: int):
     return job["min_salary"] <= salary and job["max_salary"] >= salary
 
 
-def filter_by_salary_range(jobs, salary):
-    """Filters a list of jobs by salary range
-
-    Parameters
-    ----------
-    jobs : list
-        The jobs to be filtered
-    salary : int
-        The salary to be used as filter
-
-    Returns
-    -------
-    list
-        Jobs whose salary range contains `salary`
-    """
-    return []
+def filter_by_salary_range(jobs: list, salary: int):
+    jobs_collection = []
+    for job in jobs:
+        try:
+            if matches_salary_range(job, salary):
+                jobs_collection.append(job)
+        except ValueError:
+            print(ValueError)
+    return jobs_collection
